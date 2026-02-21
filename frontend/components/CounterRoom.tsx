@@ -12,7 +12,7 @@ interface CounterRoomProps {
 
 export default function CounterRoom({ userName, userLocation }: CounterRoomProps) {
     const [visible, setVisible] = useState(false);
-    const [globalCount, setGlobalCount] = useState(99995);
+    const [globalCount, setGlobalCount] = useState(0);
     const [localClicks, setLocalClicks] = useState(0);
     const [shaking, setShaking] = useState(false);
     const [flickering, setFlickering] = useState(false);
@@ -26,8 +26,8 @@ export default function CounterRoom({ userName, userLocation }: CounterRoomProps
     useEffect(() => {
         fetch('/api/counter')
             .then((r) => r.json())
-            .then((data) => setGlobalCount(data.count || 99995))
-            .catch(() => setGlobalCount(99995));
+            .then((data) => setGlobalCount(data.count || 0))
+            .catch(() => setGlobalCount(0));
     }, []);
 
     // Distortion sound
